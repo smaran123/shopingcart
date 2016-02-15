@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shopingcart</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+ <!-- <p class="notice"><%#= notice %></p> -->
+ <!-- <p class="alert"><%#= alert %></p> -->
+
+<ul class="nav navbar-nav">
+
+<% if current_admin %>
+<li><%= link_to "Sign out", destroy_admin_session_path, :method => :delete %></li>
+<% else %>
+<li><%= link_to "SignIn",new_admin_session_path %></li>
+<li> <%= link_to "SignUp",new_admin_registration_path %></li>
+<% end %>
+</ul>
+<% flash.each do |name,msg|%>
+<%= content_tag(:div,:msg, :class => "alert alert-info") %>
+<%end%>
+
+<%= yield %>
+
+</body>
+</html>
